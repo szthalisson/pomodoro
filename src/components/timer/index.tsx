@@ -1,13 +1,15 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { motion } from "framer-motion";
 
 interface ClockProps {
   minutesP: number;
   secondsP: number;
+  color: "red" | "blue" | "lightblue";
 }
 
-export function Clock({ minutesP, secondsP }: ClockProps) {
+export function Clock({ minutesP, secondsP, color }: ClockProps) {
   const [seconds, setSeconds] = useState<number>(secondsP);
   const [textSeconds, setTextSeconds] = useState<string>("");
   const [minutes, setMinutes] = useState<number>(minutesP);
@@ -58,15 +60,19 @@ export function Clock({ minutesP, secondsP }: ClockProps) {
 
   return (
     <>
-      <h1 className="text-8xl select-none text-shadow">
-        {textMinutes}:{textSeconds}
-      </h1>
-      <button
-        onClick={() => setStart(!start)}
-        className="bg-white rounded-2xl text-red-500 px-10 py-2 tracking-wide text-2xl font-bold cursor-pointer mt-2 shadow  hover:tracking-widest transition-all"
-      >
-        {start ? "pause" : "start"}
-      </button>
+      <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
+        <h1 className="text-8xl select-none text-shadow">
+          {textMinutes}:{textSeconds}
+        </h1>
+      </motion.div>
+      <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
+        <button
+          onClick={() => setStart(!start)}
+          className={`bg-white rounded-2xl text-${color}-500 px-10 py-2 tracking-wide text-2xl font-bold cursor-pointer mt-2 shadow  hover:tracking-widest transition-all`}
+        >
+          {start ? "pause" : "start"}
+        </button>
+      </motion.div>
     </>
   );
 }

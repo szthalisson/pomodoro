@@ -8,6 +8,7 @@ export default function Home() {
   const [activePage, setActivePage] = useState<"pomodoro" | "longB" | "shortB">(
     "pomodoro",
   );
+  const [bgColor, setBgColor] = useState<string>("red");
 
   useEffect(() => {
     function changePageHeader() {
@@ -21,8 +22,23 @@ export default function Home() {
       element?.classList.add("bg-black/20");
     }
 
+    function backgroundChanger() {
+      const body = document.getElementsByTagName("body")[0];
+
+      if (activePage === "pomodoro") {
+        setBgColor("oklch(63.7% 0.237 25.331)");
+      } else if (activePage === "shortB") {
+        setBgColor("oklch(62.3% 0.214 259.815)");
+      } else {
+        setBgColor("oklch(54.6% 0.245 262.881)");
+      }
+
+      body.style.backgroundColor = bgColor;
+    }
+
     changePageHeader();
-  }, [activePage]);
+    backgroundChanger();
+  }, [activePage, bgColor]);
 
   return (
     <div className="w-full h-dvh flex flex-col items-center justify-center">
