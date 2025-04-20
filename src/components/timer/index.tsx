@@ -35,7 +35,7 @@ export function Clock({ minutesP, secondsP, color }: ClockProps) {
   }, [seconds, minutes]);
 
   function timer() {
-    const clock = setTimeout(() => {
+    var clock = setTimeout(() => {
       if (seconds <= 0) {
         setSeconds(59);
         const minutesCount = minutes - 1;
@@ -66,12 +66,21 @@ export function Clock({ minutesP, secondsP, color }: ClockProps) {
         </h1>
       </motion.div>
       <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
-        <button
-          onClick={() => setStart(!start)}
-          className={`bg-white rounded-2xl text-${color}-500 px-10 py-2 tracking-wide text-2xl font-bold cursor-pointer mt-2 shadow  hover:tracking-widest transition-all`}
-        >
-          {start ? "pause" : "start"}
-        </button>
+        {color !== "lightblue" ? (
+          <button
+            onClick={() => setStart(!start)}
+            className={`bg-white rounded-2xl text-${color}-500 px-10 py-2 tracking-wide text-2xl font-bold cursor-pointer mt-2 shadow  hover:tracking-widest transition-all`}
+          >
+            {start ? "pause" : "start"}
+          </button>
+        ) : (
+          <button
+            onClick={() => setStart(!start)}
+            className={`bg-white rounded-2xl text-blue-600 px-10 py-2 tracking-wide text-2xl font-bold cursor-pointer mt-2 shadow  hover:tracking-widest transition-all`}
+          >
+            {start ? "pause" : "start"}
+          </button>
+        )}
       </motion.div>
     </>
   );

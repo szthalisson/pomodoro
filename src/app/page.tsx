@@ -1,5 +1,6 @@
 "use client";
 
+import { LongBreak } from "@/sections/longBreak";
 import { Pomodoro } from "@/sections/pomodoro";
 import { ShortBreak } from "@/sections/shortBreak";
 import { useEffect, useState } from "react";
@@ -69,6 +70,7 @@ export default function Home() {
       </header>
       {activePage === "pomodoro" && <Pomodoro />}
       {activePage === "shortB" && <ShortBreak />}
+      {activePage === "longB" && <LongBreak />}
     </div>
   );
 }
